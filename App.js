@@ -4,6 +4,8 @@ import { Text } from "react-native";
 import * as Font from "expo-font";
 import { Asset, useAssets } from "expo-asset";
 import { Ionicons } from "@expo/vector-icons";
+import Tabs from "./navigation/Tabs";
+import { NavigationContainer } from "@react-navigation/native";
 
 export default function App() {
   const [assets] = useAssets([require("./sunssc.png")]);
@@ -12,5 +14,9 @@ export default function App() {
   if (!assets || !loaded) {
     return <AppLoading />;
   }
-  return <Text>We are done!!</Text>;
+  return (
+    <NavigationContainer>
+      <Tabs />
+    </NavigationContainer>
+  );
 }
