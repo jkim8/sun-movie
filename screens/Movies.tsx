@@ -4,6 +4,8 @@ import { Dimensions } from "react-native";
 import styled from "styled-components/native";
 import Swiper from "react-native-web-swiper";
 
+const API_KEY = "302eb9909c18dbe310619aa2bb5c8b12";
+
 const Container = styled.ScrollView`
   background-color: ${(props) => props.theme.mainBgColor};
 `;
@@ -14,6 +16,12 @@ const View = styled.View`
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 
 const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = () => {
+  const getNowPlaying = () => {
+    fetch(
+      `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US&page=1&region=KR`
+    );
+  };
+
   return (
     <Container>
       <Swiper
