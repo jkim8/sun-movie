@@ -10,7 +10,7 @@ const Image = styled.Image`
 `;
 
 interface PosterProps {
-  path: String;
+  path: string;
 }
 
 const Poster: React.FC<PosterProps> = ({ path }) => (
