@@ -49,6 +49,10 @@ const Overview = styled.Text`
   margin-top: 10px;
 `;
 
+const Votes = styled(Overview)`
+  font-size: 12px;
+`;
+
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 
 const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = () => {
@@ -97,6 +101,9 @@ const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = () => {
                 <Poster source={{ uri: makeImgPath(movie.poster_path) }} />
                 <Column>
                   <Title>{movie.original_title}</Title>
+                  {movie.vote_average > 0 ? (
+                    <Votes>⭐{movie.vote_average}/10</Votes>
+                  ) : null}
                   <Overview>{movie.overview.slice(0, 90)}...</Overview>
                 </Column>
               </Wrapper>
