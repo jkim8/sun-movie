@@ -61,6 +61,16 @@ const Overview = styled.Text`
   width: 80%;
 `;
 
+const Release = styled.Text`
+  color: white;
+  font-size: 12px;
+  margin-vertical: 10px;
+`;
+
+const ComingSoonTitle = styled(ListTitle)`
+  margin-bottom: 10px;
+`;
+
 const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = () => {
   const [loading, setLoading] = useState(true);
   const [nowPlaying, setNowPlaying] = useState([]);
@@ -152,12 +162,15 @@ const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = () => {
           ))}
         </TrendingScroll>
       </ListContainer>
-      <ListTitle>Coming Soon</ListTitle>
+      <ComingSoonTitle>Coming Soon</ComingSoonTitle>
       {upcoming.map((movie) => (
         <HMovie key={movie.id}>
           <Poster path={movie.poster_path} />
           <HColumn>
             <Title>{movie.original_title}</Title>
+            <Release>
+              {new Date(movie.release_date).toLocaleDateString("en")}
+            </Release>
             <Overview>
               {movie.overview !== "" && movie.overview.length > 80
                 ? `${movie.overview.slice(0, 140)}...`
