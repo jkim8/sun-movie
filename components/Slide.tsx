@@ -3,17 +3,12 @@ import { View, StyleSheet, useColorScheme } from "react-native";
 import styled from "styled-components/native";
 import { makeImgPath } from "../utils";
 import { BlurView } from "expo-blur";
+import Poster from "./Poster";
 
 const BgImage = styled.Image`
   width: 100%;
   height: 100%;
   position: absolute;
-`;
-
-const Poster = styled.Image`
-  width: 100px;
-  height: 160px;
-  border-radius: 5px;
 `;
 
 const Title = styled.Text<{ isDark: boolean }>`
@@ -70,7 +65,7 @@ const Slide: React.FC<SlideProps> = ({
         style={StyleSheet.absoluteFill}
       >
         <Wrapper>
-          <Poster source={{ uri: makeImgPath(posterPath) }} />
+          <Poster path={posterPath} />
           <Column>
             <Title>{originalTitle}</Title>
             {voteAverage > 0 ? <Votes>⭐{voteAverage}/10</Votes> : null}
