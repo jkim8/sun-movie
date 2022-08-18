@@ -88,7 +88,7 @@ const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = () => {
   };
   return loading ? (
     <Loader>
-      <ActivityIndicator />
+      <ActivityIndicator color="white" />
     </Loader>
   ) : (
     <FlatList
@@ -123,12 +123,11 @@ const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = () => {
           <ListContainer>
             <ListTitle>Trending Movies</ListTitle>
             <TrendingScroll
-              contentContainerStyle={{ paddingLeft: 30 }}
               horizontal
               keyExtractor={(item) => item.id + ""}
               showsHorizontalScrollIndicator={false}
               data={trending}
-              contentContainerStyle={{ paddingHorizontal: 20 }}
+              contentContainerStyle={{ paddingHorizontal: 30 }}
               ItemSeparatorComponent={() => <View style={{ width: 20 }} />}
               renderItem={({ item }) => (
                 <VMedia
