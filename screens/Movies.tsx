@@ -1,7 +1,13 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, Dimensions, RefreshControl } from "react-native";
+import {
+  ActivityIndicator,
+  Dimensions,
+  RefreshControl,
+  FlatList,
+} from "react-native";
 import Swiper from "react-native-swiper";
+import { View, Text } from "react-native";
 import styled from "styled-components/native";
 import HMedia from "../components/HMedia";
 import Slide from "../components/Slide";
@@ -26,7 +32,7 @@ const ListTitle = styled.Text`
   margin-left: 30px;
 `;
 
-const TrendingScroll = styled.ScrollView`
+const TrendingScroll = styled.FlatList`
   margin-top: 20px;
 `;
 
@@ -119,17 +125,19 @@ const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = () => {
         <TrendingScroll
           contentContainerStyle={{ paddingLeft: 30 }}
           horizontal
+          keyExtractor={(item) => item.id + ""}
           showsHorizontalScrollIndicator={false}
-        >
-          {trending.map((movie) => (
+          data={trending}
+          contentContainerStyle={{ paddingHorizontal: 20 }}
+          ItemSeparatorComponent={() => <View style={{ width: 20 }} />}
+          renderItem={({ item }) => (
             <VMedia
-              key={movie.id}
-              posterPath={movie.poster_path}
-              originalTitle={movie.original_title}
-              voteAverage={movie.vote_average}
+              posterPath={item.poster_path}
+              originalTitle={item.original_title}
+              voteAverage={item.vote_average}
             />
-          ))}
-        </TrendingScroll>
+          )}
+        />
       </ListContainer>
       <ComingSoonTitle>Coming soon</ComingSoonTitle>
       {upcoming.map((movie) => (
